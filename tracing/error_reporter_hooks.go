@@ -28,7 +28,7 @@ func (h errorReporterSpanHook) OnPostStart(span *Span) error {
 // OnPreStop logs a message and sends err to Sentry if err is non-nil.
 func (h errorReporterSpanHook) OnPreStop(span *Span, err error) error {
 	if err != nil {
-		log.Warnw("sending exc to sentry: " + fmt.Sprintf("%+v\n", errs))
+		log.Warnw("sending exc to sentry: " + fmt.Sprintf("%+v\n", err))
 		span.getHub().CaptureException(err)
 	}
 	return nil
