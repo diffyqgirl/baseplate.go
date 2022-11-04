@@ -30,13 +30,11 @@ type FinishOptions struct {
 func (fo FinishOptions) Convert() opentracing.FinishOptions {
 	var opts opentracing.FinishOptions
 	var lr opentracing.LogRecord
-	if fo.Ctx != nil {	
-		bplog.Warnw("in Convert ctx, fo.Ctx is: " + fmt.Sprintf("%+v\n", fo.Ctx))
-		bplog.Warnw("in Convert ctx, appending: " + fmt.Sprintf("%+v\n", log.Object(ctxKey, fo.Ctx)))
+	if fo.Ctx != nil {
 		lr.Fields = append(lr.Fields, log.Object(ctxKey, fo.Ctx))
 	}
 	if fo.Err != nil {
-		bplog.Warnw("in Convert err, fo.Err is: " + fmt.Sprintf("%+v\n", fo.Err))
+		bplog.Warnw("in Convert err, fo.Err is: " + fmt.Sprintf("%s\n", fo.Err.Error()))
 		bplog.Warnw("in Convert err, appending: " + fmt.Sprintf("%+v\n", log.Error(fo.Err)))
 		lr.Fields = append(lr.Fields, log.Error(fo.Err))
 	}
