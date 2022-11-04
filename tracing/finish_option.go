@@ -34,7 +34,7 @@ func (fo FinishOptions) Convert() opentracing.FinishOptions {
 		lr.Fields = append(lr.Fields, log.Object(ctxKey, fo.Ctx))
 	}
 	if fo.Err != nil {
-		bplog.Warnw("in Convert err, fo.Err is: " + fo.Err.Error())
+		bplog.Warnw("in Convert err, fo.Err is: " + (fo.Err).Error())
 		bplog.Warnw("in Convert err, appending: " + fmt.Sprintf("%+v\n", log.Error(fo.Err)))
 		lr.Fields = append(lr.Fields, log.Error(fo.Err))
 	}
