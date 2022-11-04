@@ -370,9 +370,6 @@ func (s *Span) FinishWithOptions(opts opentracing.FinishOptions) {
 	if err == nil {
 		log.Warnw("in FinishWithOptions, err is == nil")
 	}
-	if err == "" {
-		log.Warnw("in FinishWithOptions, err is empty string")
-	}
 	if stopErr := s.Stop(ctx, err); stopErr != nil {
 		s.logError(ctx, "Span.Stop returned error: ", stopErr)
 	}
